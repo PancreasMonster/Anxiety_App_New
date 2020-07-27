@@ -8,11 +8,12 @@ using UnityEngine.UI;
 public class ScenesManager : MonoBehaviour
 {
     public static ScenesManager instance;
-    public GameObject loadingScreen, camera;
+    public GameObject loadingScreen, cam;
     public Image progressBar;
-    public Image background;
+   // public Image background;
     public AudioSource gameMusic;
     public List<Sprite> backgroundSprites = new List<Sprite>();
+    public float minTimeToLoad;
     public float minMusicVolume, maxMusicVolume;
 
     public void Awake()
@@ -29,18 +30,19 @@ public class ScenesManager : MonoBehaviour
 
         StartCoroutine(FadeOutMusic(1));
 
-        Sprite chosenSprite = null;
-            if (PlayerPrefs.GetInt("LevelToLoad") == 0)
-                chosenSprite = backgroundSprites[0];
-            else if (PlayerPrefs.GetInt("LevelToLoad") == 2)
-                chosenSprite = backgroundSprites[1];
-            if (PlayerPrefs.GetInt("LevelToLoad") == 5)
-                chosenSprite = backgroundSprites[2];
+        /* Sprite chosenSprite = null;
+             if (PlayerPrefs.GetInt("LevelToLoad") == 0)
+                 chosenSprite = backgroundSprites[0];
+             else if (PlayerPrefs.GetInt("LevelToLoad") == 2)
+                 chosenSprite = backgroundSprites[1];
+             if (PlayerPrefs.GetInt("LevelToLoad") == 5)
+                 chosenSprite = backgroundSprites[2];
 
-            background.sprite = chosenSprite;
+             background.sprite = chosenSprite; */
 
-            
-        
+
+        loadingScreen.SetActive(true);
+        cam.SetActive(true);
         scenesLoading.Add(SceneManager.UnloadSceneAsync(unloadScene));
         scenesLoading.Add(SceneManager.LoadSceneAsync(loadScene, LoadSceneMode.Additive));
         StartCoroutine(GetSceneLoadProgress(loadScene));
@@ -50,8 +52,21 @@ public class ScenesManager : MonoBehaviour
 
 
     float totalSceneProgress;
+    float time;
+    float timeProgress;
     IEnumerator GetSceneLoadProgress (int loadScene)
     {
+        totalSceneProgress = 0;
+        timeProgress = 0;
+        while (time < minTimeToLoad)
+        {     
+            time += Time.deltaTime;
+            timeProgress = time / minTimeToLoad;
+            totalSceneProgress = (totalSceneProgress + timeProgress / scenesLoading.Count + 1);
+
+            yield return null;
+        }
+
         for(int i = 0; i < scenesLoading.Count; i++)
         {
             while (!scenesLoading[i].isDone)
@@ -63,7 +78,7 @@ public class ScenesManager : MonoBehaviour
                     totalSceneProgress += operation.progress;
                 }
 
-                totalSceneProgress = (totalSceneProgress / scenesLoading.Count);
+                totalSceneProgress = (totalSceneProgress + timeProgress / scenesLoading.Count + 1);
 
                 progressBar.fillAmount = totalSceneProgress;
 
@@ -72,7 +87,7 @@ public class ScenesManager : MonoBehaviour
         }
 
         loadingScreen.SetActive(false);
-
+        cam.SetActive(false);
         scenesLoading.Clear();
 
         SceneManager.SetActiveScene(SceneManager.GetSceneByBuildIndex(loadScene));
