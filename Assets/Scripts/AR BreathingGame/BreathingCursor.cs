@@ -21,6 +21,8 @@ public class BreathingCursor : MonoBehaviour
     public float animationSpeedDescreaseAmount = .5f;
     public float animationSpeedChangeAmount = .25f;
 
+    public Button breatheButton;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,7 +34,7 @@ public class BreathingCursor : MonoBehaviour
     void Update()
     {
         CursorMovement();
-        Breath();
+        //Breath();
     }
 
 
@@ -44,37 +46,36 @@ public class BreathingCursor : MonoBehaviour
         cursorValue = Mathf.Sin(time) * 100; // sine wave that moves between -100 and 100, used to find the location of the cursor relative to the centre of the breathbar when the user taps the screen
     }
 
-    void Breath()
+    public void Breath()
     {
-        //foreach (Touch touch in Input.touches)
-       // {
-            if (/*touch.phase == TouchPhase.Began &&*/ Input.GetMouseButtonDown(0) && canBreathe)
+        
+        if (canBreathe)
+        {
+            if(Mathf.Abs(cursorValue) < 20)
             {
-                if(Mathf.Abs(cursorValue) < 20)
-                {
-                    progressBarFillAmount += ((float)15/100);
-                    StartCoroutine(FillProgressBar());
-                }
-                else if (Mathf.Abs(cursorValue) < 50)
-                {
-                    progressBarFillAmount += ((float)10 / 100);
-                    StartCoroutine(FillProgressBar());
-                }
-                else if (Mathf.Abs(cursorValue) > 50)
-                {
-                    progressBarFillAmount += ((float)5 / 100);
-                    StartCoroutine(FillProgressBar());
-                }
+                progressBarFillAmount += ((float)15/100);
+                StartCoroutine(FillProgressBar());
+            }
+            else if (Mathf.Abs(cursorValue) < 50)
+            {
+                progressBarFillAmount += ((float)10 / 100);
+                StartCoroutine(FillProgressBar());
+            }
+            else if (Mathf.Abs(cursorValue) > 50)
+            {
+                progressBarFillAmount += ((float)5 / 100);
+                StartCoroutine(FillProgressBar());
+            }
             
         }
-        // }
-        
+ 
     }
 
 
     IEnumerator FillProgressBar ()
     {
         canBreathe = false;
+        breatheButton.interactable = false;
         float startFillAmount = progressBarFillAmount - progressBar.fillAmount;
 
         if(progressBarFillAmount >= animationSpeedChangeAmount)
@@ -90,6 +91,8 @@ public class BreathingCursor : MonoBehaviour
 
             yield return null;
         }
+
+        breatheButton.interactable = true;
         canBreathe = true;
     } 
 }

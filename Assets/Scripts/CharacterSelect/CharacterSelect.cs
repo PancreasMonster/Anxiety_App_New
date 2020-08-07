@@ -17,7 +17,7 @@ public class CharacterSelect : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        currentIndex = PlayerPrefs.GetInt("HeroChosen", -1);
+        currentIndex = PlayerPrefs.GetInt("HeroChosen", 0);
         AssignHero(currentIndex);        
     }
 

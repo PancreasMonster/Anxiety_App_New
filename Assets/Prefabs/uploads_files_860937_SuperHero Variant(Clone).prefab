@@ -1857,6 +1857,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3098862966453260657}
+  - component: {fileID: 1360720181}
+  - component: {fileID: 2306783492345505181}
   m_Layer: 0
   m_Name: uploads_files_860937_SuperHero Variant(Clone)
   m_TagString: Untagged
@@ -1873,7 +1875,7 @@ Transform:
   m_GameObject: {fileID: 6794543313010249107}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.15, y: 1.15, z: 1.15}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 629334489999770845}
   - {fileID: 260851125189424007}
@@ -1882,6 +1884,38 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!95 &1360720181
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6794543313010249107}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: f44755bd1ca9ae14388f6188d135d59c, type: 3}
+  m_Controller: {fileID: 9100000, guid: a8555c0cff30527479e32562cef9141f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &2306783492345505181
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6794543313010249107}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c8d5f6fdabf29441a1b7c57ff0dad01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
 --- !u!1 &6918165847796042556
 GameObject:
   m_ObjectHideFlags: 0
