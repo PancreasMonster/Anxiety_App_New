@@ -11,6 +11,8 @@ public class CharacterSelect : MonoBehaviour
     public List<GameObject> models = new List<GameObject>();
     public List<Button> buttons = new List<Button>();
     public List<CharacterDescriptionScriptableObject> descriptionObjects = new List<CharacterDescriptionScriptableObject>();
+    public List<Vector3> initialPositions = new List<Vector3>();
+    public List<Vector3> scales = new List<Vector3>();
     public int currentIndex;
     public DescriptionAssign descriptionAssign;
 
@@ -40,7 +42,8 @@ public class CharacterSelect : MonoBehaviour
         if (characterHolder.transform.GetChild(0) != null)
             Destroy(characterHolder.transform.GetChild(0).gameObject);
         GameObject _Model = Instantiate(models[i], transform.position, models[i].transform.rotation, characterHolder.transform);
-        _Model.transform.localPosition = Vector3.zero;
+        _Model.transform.localPosition = initialPositions[i];
+        _Model.transform.localScale = scales[i];
         PlayerPrefs.SetInt("HeroChosen", i);
         currentIndex = i;
         firstTime = false;
