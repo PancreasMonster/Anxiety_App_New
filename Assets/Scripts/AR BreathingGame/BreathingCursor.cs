@@ -20,14 +20,23 @@ public class BreathingCursor : MonoBehaviour
     public float animationSpeed = 3;
     public float animationSpeedDescreaseAmount = .5f;
     public float animationSpeedChangeAmount = .25f;
-
+    public List<float> speedDevisor = new List<float>();
     public Button breatheButton;
+
+    public GameObject WellDoneCanvas;
+
+    float i;
 
     // Start is called before the first frame update
     void Start()
     {
         cursor = GetComponent<RectTransform>();
         anim.SetFloat("AnimationSpeed", animationSpeed);
+        i = speedDevisor[PlayerPrefs.GetInt("HeroChosen")];
+        animationSpeed /= i;
+        animationSpeedDescreaseAmount /= i;
+
+        
     }
 
     // Update is called once per frame
@@ -41,15 +50,18 @@ public class BreathingCursor : MonoBehaviour
     float time;
     void CursorMovement ()
     {
-        time += Time.deltaTime * speedMultiplier;
-        cursor.localPosition = new Vector2(Mathf.Sin(time) * sineRange, cursor.localPosition.y); //controls the movement of the cursor
-        cursorValue = Mathf.Sin(time) * 100; // sine wave that moves between -100 and 100, used to find the location of the cursor relative to the centre of the breathbar when the user taps the screen
+        if (progressBarFillAmount < 1)
+        {
+            time += Time.deltaTime * speedMultiplier;
+            cursor.localPosition = new Vector2(Mathf.Sin(time) * sineRange, cursor.localPosition.y); //controls the movement of the cursor
+            cursorValue = Mathf.Sin(time) * 100; // sine wave that moves between -100 and 100, used to find the location of the cursor relative to the centre of the breathbar when the user taps the screen
+        }
     }
 
     public void Breath()
     {
         
-        if (canBreathe)
+        if (canBreathe && progressBarFillAmount < 1)
         {
             if(Mathf.Abs(cursorValue) < 20)
             {
@@ -92,7 +104,20 @@ public class BreathingCursor : MonoBehaviour
             yield return null;
         }
 
+        if(progressBar.fillAmount == 1)
+        {
+            StartCoroutine(BreathCompleted());
+        }
+
         breatheButton.interactable = true;
         canBreathe = true;
-    } 
+    }
+
+    IEnumerator BreathCompleted ()
+    {
+        anim.SetBool("ThumbsUp", true);
+        Instantiate(WellDoneCanvas, WellDoneCanvas.transform.position, Quaternion.identity);
+        yield return new WaitForSeconds(6f);
+        ScenesManager.instance.LoadGame((int)ScenesHolder.BREATHING_SCENE, (int)ScenesHolder.WORRY_SCENE);
+    }
 }

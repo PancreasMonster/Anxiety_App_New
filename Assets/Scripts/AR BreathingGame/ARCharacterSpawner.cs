@@ -29,6 +29,7 @@ public class ARCharacterSpawner : MonoBehaviour
     void Start()
     {
         replaceButton.onClick.AddListener(Replace);
+        StartCoroutine(BreathCompleted());
     }
 
     bool TryGetTouchPosition(out Vector2 touchPosition)
@@ -76,5 +77,11 @@ public class ARCharacterSpawner : MonoBehaviour
     public void Replace()
     {
         replacePossible = true;
+    }
+
+    IEnumerator BreathCompleted()
+    {
+        yield return new WaitForSeconds(10f);
+        ScenesManager.instance.LoadGame((int)ScenesHolder.BREATHING_SCENE, (int)ScenesHolder.WORRY_SCENE);
     }
 }

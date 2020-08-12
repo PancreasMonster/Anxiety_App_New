@@ -384,7 +384,12 @@ MonoBehaviour:
   animationSpeed: 5
   animationSpeedDescreaseAmount: 1.5
   animationSpeedChangeAmount: 0.25
+  speedDevisor:
+  - 1
+  - 3
   breatheButton: {fileID: 1206222380462373467}
+  WellDoneCanvas: {fileID: 2606286545634038600, guid: fc767464e1b25af42ae862dd13073d89,
+    type: 3}
 --- !u!1 &8690708786739035340
 GameObject:
   m_ObjectHideFlags: 0
@@ -413,7 +418,7 @@ RectTransform:
   m_GameObject: {fileID: 8690708786739035340}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 8.038828}
-  m_LocalScale: {x: 0.165, y: 0.165, z: 0.165}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_Children:
   - {fileID: 8690708787940245589}
   - {fileID: 8690708786315196194}
