@@ -17,26 +17,26 @@ public class BreathingCursor : MonoBehaviour
     public float progressBarFillAmountTime = 2;
 
     public Animator anim;
-    public float animationSpeed = 3;
-    public float animationSpeedDescreaseAmount = .5f;
+    public List<float> animationSpeeds = new List<float>();
+    public List<float> animationSpeedDescreaseAmounts = new List<float>();
     public float animationSpeedChangeAmount = .25f;
-    public List<float> speedDevisor = new List<float>();
+
     public Button breatheButton;
 
     public GameObject WellDoneCanvas;
+    public RectTransform ps;
+    float progressBarHeight;
 
-    float i;
+    int i;
+    bool breathingEnded = false;
 
     // Start is called before the first frame update
     void Start()
     {
         cursor = GetComponent<RectTransform>();
-        anim.SetFloat("AnimationSpeed", animationSpeed);
-        i = speedDevisor[PlayerPrefs.GetInt("HeroChosen")];
-        animationSpeed /= i;
-        animationSpeedDescreaseAmount /= i;
-
-        
+        i = PlayerPrefs.GetInt("HeroChosen");      
+        anim.SetFloat("AnimationSpeed", animationSpeeds[i]);
+        progressBarHeight = progressBar.rectTransform.rect.height;
     }
 
     // Update is called once per frame
@@ -44,6 +44,14 @@ public class BreathingCursor : MonoBehaviour
     {
         CursorMovement();
         //Breath();
+
+        if (progressBar.fillAmount == 1 && !breathingEnded)
+        {
+            StartCoroutine(BreathCompleted());
+            breathingEnded = true;
+        }
+
+        ps.localPosition = new Vector2(500, (900 * progressBar.fillAmount * 2) - (900));
     }
 
 
@@ -93,8 +101,8 @@ public class BreathingCursor : MonoBehaviour
         if(progressBarFillAmount >= animationSpeedChangeAmount)
         {
             animationSpeedChangeAmount += .25f;
-            animationSpeed -= animationSpeedDescreaseAmount;
-            anim.SetFloat("AnimationSpeed", animationSpeed);
+            animationSpeeds[i] -= animationSpeedDescreaseAmounts[i];
+            anim.SetFloat("AnimationSpeed", animationSpeeds[i]);
             speedMultiplier -= .2f;
         }
         while (progressBar.fillAmount < progressBarFillAmount)
@@ -104,10 +112,7 @@ public class BreathingCursor : MonoBehaviour
             yield return null;
         }
 
-        if(progressBar.fillAmount == 1)
-        {
-            StartCoroutine(BreathCompleted());
-        }
+        
 
         breatheButton.interactable = true;
         canBreathe = true;

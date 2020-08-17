@@ -28,8 +28,7 @@ public class ARCharacterSpawner : MonoBehaviour
 
     void Start()
     {
-        replaceButton.onClick.AddListener(Replace);
-        StartCoroutine(BreathCompleted());
+       
     }
 
     bool TryGetTouchPosition(out Vector2 touchPosition)
@@ -57,31 +56,20 @@ public class ARCharacterSpawner : MonoBehaviour
             if(spawnedObject == null)
             {
                 spawnedObject = Instantiate(character[PlayerPrefs.GetInt("HeroChosen")], hitPose.position, hitPose.rotation);
-                spawnedBreathGO = Instantiate(breathingGameObject, hitPose.position, hitPose.rotation, spawnedObject.transform);
+                spawnedBreathGO = Instantiate(breathingGameObject, hitPose.position, hitPose.rotation);
                 spawnedObject.GetComponent<TestRotation>().target = arCam;
-                spawnedBreathGO.GetComponent<RectTransform>().localPosition = new Vector3 (0, 0, .5f);
-                spawnedBreathGO.GetComponent<RectTransform>().localRotation = Quaternion.Euler(0,-180,0);
+                //spawnedBreathGO.GetComponent<RectTransform>().localPosition = new Vector3 (0, 0, .5f);
+               // spawnedBreathGO.GetComponent<RectTransform>().localRotation = Quaternion.Euler(0,-180,0);
                 spawnedBreathGO.GetComponentInChildren<BreathingCursor>().anim = spawnedObject.GetComponent<Animator>();
                 replacePossible = false;
                 replaceButton.interactable = true;
                 
             }
-            else if(replacePossible)
+            else 
             {
-                spawnedObject.transform.position = hitPose.position;
-                replacePossible = false;
+                //spawnedObject.transform.position = hitPose.position;
             }
         }
     }
-
-    public void Replace()
-    {
-        replacePossible = true;
-    }
-
-    IEnumerator BreathCompleted()
-    {
-        yield return new WaitForSeconds(10f);
-        ScenesManager.instance.LoadGame((int)ScenesHolder.BREATHING_SCENE, (int)ScenesHolder.WORRY_SCENE);
-    }
+ 
 }
