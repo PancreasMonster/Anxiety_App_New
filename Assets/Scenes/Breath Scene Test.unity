@@ -5307,25 +5307,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 8017641118267236955, guid: cf11142d6d4de42408dea1eee56863f5,
+    - target: {fileID: 1261832096988101888, guid: cf11142d6d4de42408dea1eee56863f5,
         type: 3}
-      propertyPath: m_AnchorMin.y
+      propertyPath: m_LocalPosition.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8017641118267236955, guid: cf11142d6d4de42408dea1eee56863f5,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8017641118267236955, guid: cf11142d6d4de42408dea1eee56863f5,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 830.9011
-      objectReference: {fileID: 0}
-    - target: {fileID: 8156578610837548876, guid: cf11142d6d4de42408dea1eee56863f5,
-        type: 3}
-      propertyPath: m_SortingOrder
-      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8690708786315196207, guid: cf11142d6d4de42408dea1eee56863f5,
         type: 3}
@@ -5447,45 +5432,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BreathGameCanvas
       objectReference: {fileID: 0}
-    - target: {fileID: 8690708787296086568, guid: cf11142d6d4de42408dea1eee56863f5,
+    - target: {fileID: 8690708787940245589, guid: cf11142d6d4de42408dea1eee56863f5,
         type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8690708787296086568, guid: cf11142d6d4de42408dea1eee56863f5,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8690708787296086568, guid: cf11142d6d4de42408dea1eee56863f5,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8690708787296086568, guid: cf11142d6d4de42408dea1eee56863f5,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 830
-      objectReference: {fileID: 0}
-    - target: {fileID: 8690708787296086568, guid: cf11142d6d4de42408dea1eee56863f5,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 990
-      objectReference: {fileID: 0}
-    - target: {fileID: 8690708787296086568, guid: cf11142d6d4de42408dea1eee56863f5,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 8690708787296086583, guid: cf11142d6d4de42408dea1eee56863f5,
-        type: 3}
-      propertyPath: m_FillAmount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8783941716110166941, guid: cf11142d6d4de42408dea1eee56863f5,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: -10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cf11142d6d4de42408dea1eee56863f5, type: 3}

@@ -22,6 +22,7 @@ public class BreathingCursor : MonoBehaviour
     public float animationSpeedChangeAmount = .25f;
 
     public Button breatheButton;
+    RectTransform breathButtonRect;
 
     public GameObject WellDoneCanvas;
     public RectTransform ps;
@@ -37,6 +38,7 @@ public class BreathingCursor : MonoBehaviour
         i = PlayerPrefs.GetInt("HeroChosen");      
         anim.SetFloat("AnimationSpeed", animationSpeeds[i]);
         progressBarHeight = progressBar.rectTransform.rect.height;
+        breathButtonRect = breatheButton.GetComponent<RectTransform>();
     }
 
     // Update is called once per frame
@@ -63,6 +65,7 @@ public class BreathingCursor : MonoBehaviour
             time += Time.deltaTime * speedMultiplier;
             cursor.localPosition = new Vector2(Mathf.Sin(time) * sineRange, cursor.localPosition.y); //controls the movement of the cursor
             cursorValue = Mathf.Sin(time) * 100; // sine wave that moves between -100 and 100, used to find the location of the cursor relative to the centre of the breathbar when the user taps the screen
+            breathButtonRect.localScale = new Vector3 (1 - Mathf.Abs((Mathf.Sin(time) * .5f)), 1 - Mathf.Abs((Mathf.Sin(time) * .5f)), 1);
         }
     }
 
