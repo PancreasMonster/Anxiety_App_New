@@ -5307,11 +5307,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1261832096988101888, guid: cf11142d6d4de42408dea1eee56863f5,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8690708786315196207, guid: cf11142d6d4de42408dea1eee56863f5,
         type: 3}
       propertyPath: anim
@@ -5322,6 +5317,11 @@ PrefabInstance:
       propertyPath: ps
       value: 
       objectReference: {fileID: 979106812}
+    - target: {fileID: 8690708786315196207, guid: cf11142d6d4de42408dea1eee56863f5,
+        type: 3}
+      propertyPath: sineRange
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 8690708786739035336, guid: cf11142d6d4de42408dea1eee56863f5,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5431,11 +5431,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BreathGameCanvas
-      objectReference: {fileID: 0}
-    - target: {fileID: 8690708787940245589, guid: cf11142d6d4de42408dea1eee56863f5,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cf11142d6d4de42408dea1eee56863f5, type: 3}

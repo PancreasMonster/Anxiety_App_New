@@ -15,12 +15,14 @@ public class CharacterSelect : MonoBehaviour
     public List<Vector3> scales = new List<Vector3>();
     public int currentIndex;
     public DescriptionAssign descriptionAssign;
+    public Camera cam;
 
     // Start is called before the first frame update
     void Start()
     {
         currentIndex = PlayerPrefs.GetInt("HeroChosen", 0);
-        AssignHero(currentIndex);        
+        AssignHero(currentIndex);
+        //ScreenshotHandler.instance.AssignCamera(cam);
     }
 
     // Update is called once per frame
@@ -49,4 +51,10 @@ public class CharacterSelect : MonoBehaviour
         firstTime = false;
         descriptionAssign.AssignDescription(descriptionObjects[i]);
     }
+
+    public void ScreenshotTake()
+    {
+        ScreenshotHandler.TakeScreenshot_Static(Screen.width, Screen.height);
+    }
+
 }
