@@ -76,17 +76,17 @@ public class BreathingCursor : MonoBehaviour
         {
             if(Mathf.Abs(cursorValue) < 20)
             {
-                progressBarFillAmount += ((float)15/100);
+                progressBarFillAmount += ((float)25/100);
                 StartCoroutine(FillProgressBar());
             }
             else if (Mathf.Abs(cursorValue) < 50)
             {
-                progressBarFillAmount += ((float)10 / 100);
+                progressBarFillAmount += ((float)25 / 100);
                 StartCoroutine(FillProgressBar());
             }
             else if (Mathf.Abs(cursorValue) > 50)
             {
-                progressBarFillAmount += ((float)5 / 100);
+                progressBarFillAmount += ((float)25 / 100);
                 StartCoroutine(FillProgressBar());
             }
             
@@ -126,6 +126,6 @@ public class BreathingCursor : MonoBehaviour
         anim.SetBool("ThumbsUp", true);
         Instantiate(WellDoneCanvas, WellDoneCanvas.transform.position, Quaternion.identity);
         yield return new WaitForSeconds(6f);
-        ScenesManager.instance.LoadGame((int)ScenesHolder.BREATHING_SCENE, (int)ScenesHolder.WORRY_SCENE);
+        ScenesManager.instance.LoadGame((int)ScenesHolder.BREATHING_SCENE, (int)ScenesHolder.WORRY_DESTRUCTION);
     }
 }

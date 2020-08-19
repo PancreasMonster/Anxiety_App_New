@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cef59c5789e327418720689c6efc8c7, type: 3}
   m_Name: Female
   m_EditorClassIdentifier: 
-  Title: Water Woman
+  Title: Purple Heart
   Description: Water Woman found out about her powers...
-  FavouriteColour: {r: 0.25, g: 0.43500447, b: 1, a: 1}
+  FavouriteColour: {r: 0.6431373, g: 0.33333334, b: 1, a: 1}
