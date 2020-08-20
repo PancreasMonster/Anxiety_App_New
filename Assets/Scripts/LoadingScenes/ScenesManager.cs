@@ -42,7 +42,7 @@ public class ScenesManager : MonoBehaviour
 
 
         loadingScreen.SetActive(true);
-        cam.SetActive(true);
+       // cam.SetActive(true);
         scenesLoading.Add(SceneManager.UnloadSceneAsync(unloadScene));
         scenesLoading.Add(SceneManager.LoadSceneAsync(loadScene, LoadSceneMode.Additive));
         StartCoroutine(GetSceneLoadProgress(loadScene));
@@ -87,7 +87,7 @@ public class ScenesManager : MonoBehaviour
         }
 
         loadingScreen.SetActive(false);
-        cam.SetActive(false);
+       // cam.SetActive(false);
         scenesLoading.Clear();
 
         SceneManager.SetActiveScene(SceneManager.GetSceneByBuildIndex(loadScene));

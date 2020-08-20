@@ -17,6 +17,8 @@ public class BreathingCursor : MonoBehaviour
     public float progressBarFillAmountTime = 2;
 
     public Animator anim;
+    public GameObject character;
+    public ParticleSystemHandler charging;
     public List<float> animationSpeeds = new List<float>();
     public List<float> animationSpeedDescreaseAmounts = new List<float>();
     public float animationSpeedChangeAmount = .25f;
@@ -30,6 +32,7 @@ public class BreathingCursor : MonoBehaviour
 
     int i;
     bool breathingEnded = false;
+    public Color col;
 
     // Start is called before the first frame update
     void Start()
@@ -127,5 +130,23 @@ public class BreathingCursor : MonoBehaviour
         Instantiate(WellDoneCanvas, WellDoneCanvas.transform.position, Quaternion.identity);
         yield return new WaitForSeconds(6f);
         ScenesManager.instance.LoadGame((int)ScenesHolder.BREATHING_SCENE, (int)ScenesHolder.WORRY_DESTRUCTION);
+    }
+
+    IEnumerator Rise()
+    {
+        yield return new WaitForSeconds(3);
+        anim.SetBool("Hover", true);
+        float startAmount = 0;
+        Vector3 origPos = character.transform.position;
+        while (startAmount < 1.8)
+        {
+            float t = Time.deltaTime * 2.5f;
+            startAmount += t;
+            origPos = new Vector3(origPos.x, origPos.y + t, origPos.z);
+            character.transform.position = origPos;
+            yield return null;
+        }
+
+        charging.powerUpParticles(col);
     }
 }

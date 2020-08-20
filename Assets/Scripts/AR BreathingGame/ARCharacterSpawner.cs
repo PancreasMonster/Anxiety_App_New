@@ -17,6 +17,7 @@ public class ARCharacterSpawner : MonoBehaviour
     private ARRaycastManager arRaycastManager;
     private Vector2 touchPosition;
     public Button replaceButton;
+    public List<Color> colors = new List<Color>();
 
     static List<ARRaycastHit> hits = new List<ARRaycastHit>();
 
@@ -61,6 +62,10 @@ public class ARCharacterSpawner : MonoBehaviour
                 //spawnedBreathGO.GetComponent<RectTransform>().localPosition = new Vector3 (0, 0, .5f);
                // spawnedBreathGO.GetComponent<RectTransform>().localRotation = Quaternion.Euler(0,-180,0);
                 spawnedBreathGO.GetComponentInChildren<BreathingCursor>().anim = spawnedObject.GetComponent<Animator>();
+                spawnedBreathGO.GetComponentInChildren<BreathingCursor>().character = spawnedObject;
+                spawnedBreathGO.GetComponentInChildren<BreathingCursor>().col = colors[PlayerPrefs.GetInt("HeroChosen")];
+                spawnedBreathGO.GetComponentInChildren<BreathingCursor>().charging = spawnedObject.transform.Find("ChargeUpParticles").GetComponent<ParticleSystemHandler>();
+                spawnedObject.transform.Find("ParticleSystemLanding").GetComponent<ParticleSystemHandler>().Landing(colors[PlayerPrefs.GetInt("HeroChosen")]);
                 replacePossible = false;
                 replaceButton.interactable = true;
                 
