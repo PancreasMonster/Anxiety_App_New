@@ -24,7 +24,7 @@ public class BreathingCursor : MonoBehaviour
     public float animationSpeedChangeAmount = .25f;
 
     public Button breatheButton;
-    RectTransform breathButtonRect;
+    public RectTransform breathButtonRect;
 
     public GameObject WellDoneCanvas;
     public RectTransform ps;
@@ -41,7 +41,7 @@ public class BreathingCursor : MonoBehaviour
         i = PlayerPrefs.GetInt("HeroChosen");      
         anim.SetFloat("AnimationSpeed", animationSpeeds[i]);
         progressBarHeight = progressBar.rectTransform.rect.height;
-        breathButtonRect = breatheButton.GetComponent<RectTransform>();
+        //breathButtonRect = breatheButton.GetComponent<RectTransform>();
     }
 
     // Update is called once per frame
@@ -52,11 +52,11 @@ public class BreathingCursor : MonoBehaviour
 
         if (progressBar.fillAmount == 1 && !breathingEnded)
         {
-            StartCoroutine(BreathCompleted());
+            StartCoroutine(Rise());
             breathingEnded = true;
         }
 
-        ps.localPosition = new Vector2(500, (900 * progressBar.fillAmount * 2) - (900));
+        //ps.localPosition = new Vector2(500, (900 * progressBar.fillAmount * 2) - (900));
     }
 
 
@@ -124,21 +124,14 @@ public class BreathingCursor : MonoBehaviour
         canBreathe = true;
     }
 
-    IEnumerator BreathCompleted ()
-    {
-        anim.SetBool("ThumbsUp", true);
-        Instantiate(WellDoneCanvas, WellDoneCanvas.transform.position, Quaternion.identity);
-        yield return new WaitForSeconds(6f);
-        ScenesManager.instance.LoadGame((int)ScenesHolder.BREATHING_SCENE, (int)ScenesHolder.WORRY_DESTRUCTION);
-    }
-
     IEnumerator Rise()
     {
+        Instantiate(WellDoneCanvas, WellDoneCanvas.transform.position, Quaternion.identity);
         yield return new WaitForSeconds(3);
         anim.SetBool("Hover", true);
         float startAmount = 0;
         Vector3 origPos = character.transform.position;
-        while (startAmount < 1.8)
+        while (startAmount < .9f)
         {
             float t = Time.deltaTime * 2.5f;
             startAmount += t;
@@ -146,7 +139,8 @@ public class BreathingCursor : MonoBehaviour
             character.transform.position = origPos;
             yield return null;
         }
-
+        yield return new WaitForSeconds(8f);
+        ScenesManager.instance.LoadGame((int)ScenesHolder.BREATHING_SCENE, (int)ScenesHolder.WORRY_DESTRUCTION);
         charging.powerUpParticles(col);
     }
 }

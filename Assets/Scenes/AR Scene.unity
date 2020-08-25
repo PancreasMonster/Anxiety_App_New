@@ -925,6 +925,9 @@ MonoBehaviour:
   colors:
   - {r: 0.95686275, g: 1, b: 0.10980392, a: 1}
   - {r: 0.6117647, g: 0.03137255, b: 1, a: 1}
+  size:
+  - {x: 0.5, y: 0.5, z: 0.5}
+  - {x: 0.5, y: 0.5, z: 0.5}
 --- !u!1 &1192211315
 GameObject:
   m_ObjectHideFlags: 0

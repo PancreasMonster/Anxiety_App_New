@@ -18,6 +18,7 @@ public class ARCharacterSpawner : MonoBehaviour
     private Vector2 touchPosition;
     public Button replaceButton;
     public List<Color> colors = new List<Color>();
+    public List<Vector3> size = new List<Vector3>();
 
     static List<ARRaycastHit> hits = new List<ARRaycastHit>();
 
@@ -60,7 +61,8 @@ public class ARCharacterSpawner : MonoBehaviour
                 spawnedBreathGO = Instantiate(breathingGameObject, hitPose.position, hitPose.rotation);
                 spawnedObject.GetComponent<TestRotation>().target = arCam;
                 //spawnedBreathGO.GetComponent<RectTransform>().localPosition = new Vector3 (0, 0, .5f);
-               // spawnedBreathGO.GetComponent<RectTransform>().localRotation = Quaternion.Euler(0,-180,0);
+                // spawnedBreathGO.GetComponent<RectTransform>().localRotation = Quaternion.Euler(0,-180,0);
+                spawnedObject.transform.localScale = size[PlayerPrefs.GetInt("HeroChosen")];
                 spawnedBreathGO.GetComponentInChildren<BreathingCursor>().anim = spawnedObject.GetComponent<Animator>();
                 spawnedBreathGO.GetComponentInChildren<BreathingCursor>().character = spawnedObject;
                 spawnedBreathGO.GetComponentInChildren<BreathingCursor>().col = colors[PlayerPrefs.GetInt("HeroChosen")];
