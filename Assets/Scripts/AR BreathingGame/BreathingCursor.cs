@@ -139,8 +139,9 @@ public class BreathingCursor : MonoBehaviour
             character.transform.position = origPos;
             yield return null;
         }
+        charging.powerUpParticles(col);
         yield return new WaitForSeconds(8f);
         ScenesManager.instance.LoadGame((int)ScenesHolder.BREATHING_SCENE, (int)ScenesHolder.WORRY_DESTRUCTION);
-        charging.powerUpParticles(col);
+        
     }
 }
