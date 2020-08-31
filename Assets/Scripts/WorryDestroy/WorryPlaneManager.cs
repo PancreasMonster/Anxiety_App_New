@@ -7,11 +7,14 @@ public class WorryPlaneManager : MonoBehaviour
 
     public static WorryPlaneManager instance;
     public GameObject worryPlane;
+    public ParticleSystemHandler PSH;
     [SerializeField] private Material mat;
 
     private float dissolveAmount;
-    private bool isDissolving;
-
+    private bool isDissolving = false;
+    private bool psPlay = false;
+    public List<Color> colors = new List<Color>();
+    public bool input = false;
 
     private void Awake()
     {
@@ -27,9 +30,20 @@ public class WorryPlaneManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
+        if(Input.GetKeyDown(KeyCode.T) && input)
+        {
+            isDissolving = true;
+        }
 
         if (isDissolving)
         {
+            if(!psPlay)
+            {
+                psPlay = true;
+                PSH.powerUpParticles(colors[PlayerPrefs.GetInt("HeroChosen")]);
+            }
+
             if (dissolveAmount < 1)
             {
                 dissolveAmount = Mathf.Lerp(dissolveAmount, 1, Time.deltaTime);

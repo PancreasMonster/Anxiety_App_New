@@ -128,26 +128,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4401320672328787158, guid: cf11142d6d4de42408dea1eee56863f5,
-        type: 3}
-      propertyPath: m_textInfo.characterCount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4401320672328787158, guid: cf11142d6d4de42408dea1eee56863f5,
-        type: 3}
-      propertyPath: m_textInfo.wordCount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4401320672328787158, guid: cf11142d6d4de42408dea1eee56863f5,
-        type: 3}
-      propertyPath: m_textInfo.lineCount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4401320672328787158, guid: cf11142d6d4de42408dea1eee56863f5,
-        type: 3}
-      propertyPath: m_textInfo.pageCount
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8690708786739035336, guid: cf11142d6d4de42408dea1eee56863f5,
         type: 3}
       propertyPath: m_LocalPosition.x

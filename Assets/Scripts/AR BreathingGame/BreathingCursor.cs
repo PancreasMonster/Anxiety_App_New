@@ -11,6 +11,7 @@ public class BreathingCursor : MonoBehaviour
 
     public bool canBreathe = true;
     public float cursorValue;
+    public float colourValue;
 
     public Image progressBar;
     public float progressBarFillAmount;
@@ -24,6 +25,7 @@ public class BreathingCursor : MonoBehaviour
     public float animationSpeedChangeAmount = .25f;
 
     public Button breatheButton;
+    public Image breatheButtonImage;
     public RectTransform breathButtonRect;
 
     public GameObject WellDoneCanvas;
@@ -68,7 +70,15 @@ public class BreathingCursor : MonoBehaviour
             time += Time.deltaTime * speedMultiplier;
             cursor.localPosition = new Vector2(Mathf.Sin(time) * sineRange, cursor.localPosition.y); //controls the movement of the cursor
             cursorValue = Mathf.Sin(time) * 100; // sine wave that moves between -100 and 100, used to find the location of the cursor relative to the centre of the breathbar when the user taps the screen
+            colourValue = Mathf.Cos(time) * 255;
             breathButtonRect.localScale = new Vector3 (1 - Mathf.Abs((Mathf.Sin(time) * .5f)), 1 - Mathf.Abs((Mathf.Sin(time) * .5f)), 1);
+            if(breathButtonRect.localScale.x > .75f)
+            {
+                breatheButtonImage.color = Color.Lerp(breatheButtonImage.color, Color.green, Time.deltaTime * 3f);
+            } else
+            {
+                breatheButtonImage.color = Color.Lerp(breatheButtonImage.color, Color.white, Time.deltaTime * 3f);
+            }
         }
     }
 
@@ -79,7 +89,7 @@ public class BreathingCursor : MonoBehaviour
         {
             if(Mathf.Abs(cursorValue) < 20)
             {
-                progressBarFillAmount += ((float)25/100);
+                progressBarFillAmount += ((float)25 / 100);
                 StartCoroutine(FillProgressBar());
             }
             else if (Mathf.Abs(cursorValue) < 50)
