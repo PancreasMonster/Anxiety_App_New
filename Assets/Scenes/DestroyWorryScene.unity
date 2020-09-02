@@ -469,7 +469,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   heroes:
   - {fileID: 4210984515662681691, guid: 0c0bccad84704e04d9c3d814b463a8b7, type: 3}
-  - {fileID: 3829952521949405915, guid: 9c9048311f5e85f499c4ed949cfc3a5e, type: 3}
+  - {fileID: 3579329899986000745, guid: cd2ef32581dff074084afb32dd3e226f, type: 3}
   colors:
   - {r: 1, g: 0.96862745, b: 0, a: 1}
   - {r: 0.7254902, g: 0.07058824, b: 1, a: 1}
