@@ -19,6 +19,9 @@ public class ARCharacterSpawner : MonoBehaviour
     public Button replaceButton;
     public List<Color> colors = new List<Color>();
     public List<Vector3> size = new List<Vector3>();
+    public GameObject scanText, heroText;
+    public ARPlaneManager arpm;
+    bool textBool = false;
 
     static List<ARRaycastHit> hits = new List<ARRaycastHit>();
 
@@ -26,6 +29,7 @@ public class ARCharacterSpawner : MonoBehaviour
     void Awake()
     {
         arRaycastManager = GetComponent<ARRaycastManager>();
+        //arRaycastManager.trackables.count;
     }
 
     void Start()
@@ -48,6 +52,13 @@ public class ARCharacterSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(arpm.trackables.count > 0 && !textBool)
+        {
+            scanText.SetActive(false);
+            heroText.SetActive(true);
+            textBool = true;
+        }
+
         if (!TryGetTouchPosition(out Vector2 touchPosition))
             return;
 
@@ -70,7 +81,7 @@ public class ARCharacterSpawner : MonoBehaviour
                 spawnedObject.transform.Find("ParticleSystemLanding").GetComponent<ParticleSystemHandler>().Landing(colors[PlayerPrefs.GetInt("HeroChosen")]);
                 replacePossible = false;
                 replaceButton.interactable = true;
-                
+                heroText.SetActive(false);
             }
             else 
             {
@@ -79,4 +90,10 @@ public class ARCharacterSpawner : MonoBehaviour
         }
     }
  
+
+    public void StartUI()
+    {
+        scanText.SetActive(true);
+    }
+
 }

@@ -4275,8 +4275,8 @@ MonoBehaviour:
   laserPrefab: {fileID: 3861813398789451509, guid: 4ccb8eff8144bb04fad3e598578cef50,
     type: 3}
   speed: 7
-  col: {r: 0.15294118, g: 0.16078432, b: 0.9137255, a: 1}
-  WellDoneCanvas: {fileID: 2606286545634038600, guid: fc767464e1b25af42ae862dd13073d89,
+  col: {r: 0.9019608, g: 0.9137255, b: 0.15294118, a: 1}
+  WellDoneCanvas: {fileID: 2606286545634038600, guid: 563cacbbc0a1d394cb1d297ca4fbc921,
     type: 3}
 --- !u!1 &4210984515662681769
 GameObject:

@@ -89,6 +89,10 @@ public class ScenesManager : MonoBehaviour
         loadingScreen.SetActive(false);
        // cam.SetActive(false);
         scenesLoading.Clear();
+        if (loadScene == (int)ScenesHolder.BREATHING_SCENE)
+        {
+            GameObject.Find("AR Session Origin").GetComponent<ARCharacterSpawner>().StartUI();
+        }
 
         SceneManager.SetActiveScene(SceneManager.GetSceneByBuildIndex(loadScene));
     }
