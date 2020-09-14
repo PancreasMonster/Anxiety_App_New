@@ -22,6 +22,7 @@ public class ARCharacterSpawner : MonoBehaviour
     public GameObject scanText, heroText;
     public ARPlaneManager arpm;
     bool textBool = false;
+    AudioSource aud;
 
     static List<ARRaycastHit> hits = new List<ARRaycastHit>();
 
@@ -34,7 +35,7 @@ public class ARCharacterSpawner : MonoBehaviour
 
     void Start()
     {
-       
+        aud = GetComponent<AudioSource>();
     }
 
     bool TryGetTouchPosition(out Vector2 touchPosition)
@@ -82,6 +83,7 @@ public class ARCharacterSpawner : MonoBehaviour
                 replacePossible = false;
                 replaceButton.interactable = true;
                 heroText.SetActive(false);
+                aud.Play();
             }
             else 
             {

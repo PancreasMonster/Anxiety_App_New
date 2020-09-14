@@ -58,6 +58,7 @@ public class ScenesManager : MonoBehaviour
     {
         totalSceneProgress = 0;
         timeProgress = 0;
+        loadingScreen.GetComponent<AudioSource>().Play();
         while (time < minTimeToLoad)
         {     
             time += Time.deltaTime;
@@ -87,7 +88,8 @@ public class ScenesManager : MonoBehaviour
         }
 
         loadingScreen.SetActive(false);
-       // cam.SetActive(false);
+        loadingScreen.GetComponent<AudioSource>().Stop();
+        // cam.SetActive(false);
         scenesLoading.Clear();
         if (loadScene == (int)ScenesHolder.BREATHING_SCENE)
         {

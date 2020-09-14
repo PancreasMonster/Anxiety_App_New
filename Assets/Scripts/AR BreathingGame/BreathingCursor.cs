@@ -30,6 +30,7 @@ public class BreathingCursor : MonoBehaviour
 
     public GameObject WellDoneCanvas;
     public RectTransform ps;
+    public AudioSource aud, aud2;
     float progressBarHeight;
 
     int i;
@@ -55,6 +56,8 @@ public class BreathingCursor : MonoBehaviour
         if (progressBar.fillAmount == 1 && !breathingEnded)
         {
             StartCoroutine(Rise());
+            aud.Play();
+            aud2.Play();
             breathingEnded = true;
         }
 

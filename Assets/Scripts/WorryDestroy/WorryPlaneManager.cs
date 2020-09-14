@@ -15,6 +15,7 @@ public class WorryPlaneManager : MonoBehaviour
     private bool psPlay = false;
     public List<Color> colors = new List<Color>();
     public bool input = false;
+    private AudioSource aud;
 
     private void Awake()
     {
@@ -25,6 +26,7 @@ public class WorryPlaneManager : MonoBehaviour
     void Start()
     {
         mat.SetFloat("_DissolveAmount", dissolveAmount);
+        aud = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -42,6 +44,7 @@ public class WorryPlaneManager : MonoBehaviour
             {
                 psPlay = true;
                 PSH.powerUpParticles(colors[PlayerPrefs.GetInt("HeroChosen")]);
+                aud.Play();
             }
 
             if (dissolveAmount < 1)
